@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/ricardorodrigooliveira/mypage/static/css/main.073c9b0a.css",
+    "main.js": "/ricardorodrigooliveira/mypage/static/js/main.7a9f6d21.js",
+    "static/js/787.69c1b68f.chunk.js": "/ricardorodrigooliveira/mypage/static/js/787.69c1b68f.chunk.js",
+    "static/media/logo.svg": "/ricardorodrigooliveira/mypage/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/ricardorodrigooliveira/mypage/index.html",
+    "main.073c9b0a.css.map": "/ricardorodrigooliveira/mypage/static/css/main.073c9b0a.css.map",
+    "main.7a9f6d21.js.map": "/ricardorodrigooliveira/mypage/static/js/main.7a9f6d21.js.map",
+    "787.69c1b68f.chunk.js.map": "/ricardorodrigooliveira/mypage/static/js/787.69c1b68f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.073c9b0a.css",
+    "static/js/main.7a9f6d21.js"
+  ]
+}
