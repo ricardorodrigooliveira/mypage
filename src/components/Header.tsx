@@ -34,14 +34,14 @@ export function Header() {
                 <div className="infos container mb-4 mb-md-2">
                     <div className="title">
                        <h6 className="subtitle font-weight-normal">Are locking for</h6>
-                        <h5>Lorem inpsum</h5>
+                        <h5>Ricardo R. Oliveira</h5>
                         <p className="font-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     </div>
                     <div className="socials text-right">
                         <div className="row justify-content-between">
                             <div className="col">
-                                <a className="d-block subtitle"><i className="ti-microphone pr-2"></i> (123) 456-7890</a>
-                                <a className="d-block subtitle"><i className="ti-email pr-2"></i> info@website.com</a>
+                                <a className="d-block subtitle"><i className="ti-microphone pr-2"></i> (11) 96905-1743</a>
+                                <a className="d-block subtitle"><i className="ti-email pr-2"></i> ricardorodrigo.oliveira@gmail.com</a>
                             </div>
                             <div className="col">
                                 <h6 className="subtitle font-weight-normal mb-2">Social Media</h6>
