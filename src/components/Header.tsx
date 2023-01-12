@@ -1,9 +1,8 @@
 import React from 'react';
-import '../assets/css/full';
 
 export function Header() {
     return(
-        <div id="container">
+        <div>
             <header id="home" className="header">
                 <div className="overlay"></div>
 
