@@ -20,11 +20,9 @@
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -b master -d build",
-    "dev-build": "gh-pages dev -d build",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "hml-deploy": "gh-pages -b hml -d build",
+    "dev-deploy": "gh-pages -b dev -d build",
+    "start": "react-scripts start"
   },
   "eslintConfig": {
     "extends": [
