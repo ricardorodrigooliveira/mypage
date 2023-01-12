@@ -1,3 +1,4 @@
+import React from 'react';
 import '../assets/css/full';
 
 export function Header() {
