@@ -10910,7 +10910,7 @@ a.text-dark:hover, a.text-dark:focus {
   }
   tr,
   img {
-    page-break-inside: avoid;
+    page-break-inside: avoid; 
   }
   p,
   h2,

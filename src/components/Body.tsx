@@ -1,3 +1,6 @@
+import { Avatar1, Avatar2, Avatar3 } from '../assets/imgs/avatar';
+import { Img1, Img2, Img3, Img4, Img5, Img6, Img7, Img8, Img9 }from '../assets/imgs/img';
+
 export function Body(){
     return (
         <div>
@@ -65,7 +68,7 @@ export function Body(){
                     <div className="row text-center">
                         <div className="col-lg-4">
                             <a href="javascript:void(0)" className="card border-0 text-dark">
-                                <p>img className="card-img-top" src="assets/imgs/img-5.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page" </p>
+                                <Img5/>
                                 <span className="card-body">
                                     <h4 className="title mt-4">Codding &amp; Designing</h4>
                                     <p className="xs-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -74,7 +77,7 @@ export function Body(){
                         </div>
                         <div className="col-lg-4">
                             <a href="javascript:void(0)" className="card border-0 text-dark">
-                                <p>img className="card-img-top" src="assets/imgs/img-6.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page" </p>
+                                <Img6/>
                                 <span className="card-body">
                                     <h4 className="title mt-4">Graphic Design</h4>
                                     <p className="xs-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -83,7 +86,7 @@ export function Body(){
                         </div>
                         <div className="col-lg-4">
                             <a href="javascript:void(0)" className="card border-0 text-dark">
-                                <p>img className="card-img-top" src="assets/imgs/img-7.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page"</p>
+                                <Img7/>
                                 <span className="card-body">
                                     <h4 className="title mt-4">Development</h4>
                                     <p className="xs-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
@@ -102,32 +105,32 @@ export function Body(){
 
                 <div id="owl-portfolio" className="owl-carousel owl-theme mt-4">
                     <a href="javascript:void(0)" className="item expertises-item">
-                        <p>img src="assets/imgs/img-1.jpg"alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page" className="box-shadow"</p>
+                        <Img1/>
                         <h6 className="mt-3 mb-2">Fuga asperiores</h6>
                         <p className="xs-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     </a> 
                     <a href="javascript:void(0)" className="item expertises-item">
-                        <p>img src="assets/imgs/img-2.jpg"alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page" className="box-shadow"</p>
+                        <Img2/>
                         <h6 className="mt-3 mb-2">Voluptatibus iure!</h6>
                         <p className="xs-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     </a> 
                     <a href="javascript:void(0)" className="item expertises-item">
-                        <p>img src="assets/imgs/img-3.jpg"alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page" className="box-shadow"</p>
+                        <Img3/>
                         <h6 className="mt-3 mb-2">Autem minus animi</h6>
                         <p className="xs-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     </a> 
                     <a href="javascript:void(0)" className="item expertises-item">
-                        <p>img src="assets/imgs/img-4.jpg"alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page" className="box-shadow"</p>
+                        <Img4/>
                         <h6 className="mt-3 mb-2">Sed eligendi</h6>
                         <p className="xs-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     </a> 
                     <a href="javascript:void(0)" className="item expertises-item">
-                        <p>img src="assets/imgs/img-8.jpg"alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page" className="box-shadow"</p>
-                        <h6 className="mt-3 mb-2">Totam eveniet assumenda!</h6>
+                        <Img8/>
+                        <h6 className="mt-3 mb-2">Sed eligendi</h6>
                         <p className="xs-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     </a> 
                     <a href="javascript:void(0)" className="item expertises-item">
-                        <p>img src="assets/imgs/img-9.jpg"alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page" className="box-shadow"</p>
+                        <Img9/>
                         <h6 className="mt-3 mb-2">Sapiente dolore ut</h6>
                         <p className="xs-font">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                     </a>             
@@ -143,7 +146,7 @@ export function Body(){
                     <div id="owl-testmonial" className="owl-carousel owl-theme mt-4">
                         <div className="item">
                             <div className="textmonial-item">
-                                <p>img src="assets/imgs/avatar1.jpg" className="avatar" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page"</p>
+                                <Avatar1/>
                                 <div className="des">
                                     <h5 className="ti-quote-left font-weight-bold"></h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ea facere voluptatum corrupti doloremque odit sequi labore rerum maiores libero.adipisicing elit. Vitae quasi voluptatem sed quaerat dolorum architecto reiciendis magni laboriosam, illum, nobis, quae dolor, ducimus libero! Sapiente deleniti sit dolor, ex possimus.</p>
@@ -157,7 +160,7 @@ export function Body(){
                         </div>
                         <div className="item">
                             <div className="textmonial-item">
-                                <p>img src="assets/imgs/avatar2.jpg" className="avatar" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page"</p>
+                                <Avatar2/>
                                 <div className="des">
                                     <h5 className="ti-quote-left font-weight-bold"></h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ea facere voluptatum corrupti doloremque odit sequi labore rerum maiores libero.adipisicing elit. Vitae quasi voluptatem sed quaerat dolorum architecto reiciendis magni laboriosam, illum, nobis, quae dolor, ducimus libero! Sapiente deleniti sit dolor, ex possimus.</p>
@@ -171,7 +174,7 @@ export function Body(){
                         </div>
                         <div className="item">
                             <div className="textmonial-item">
-                                <p>img src="assets/imgs/avatar3.jpg" className="avatar" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page"</p>
+                                <Avatar3/>
                                 <div className="des">
                                     <h5 className="ti-quote-left font-weight-bold"></h5>
                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus ea facere voluptatum corrupti doloremque odit sequi labore rerum maiores libero.adipisicing elit. Vitae quasi voluptatem sed quaerat dolorum architecto reiciendis magni laboriosam, illum, nobis, quae dolor, ducimus libero! Sapiente deleniti sit dolor, ex possimus.</p>
@@ -227,10 +230,10 @@ export function Body(){
 
                     <div className="blog-wrapper">
                         <div className="img-wrapper">
-                            <p>img src="assets/imgs/img-3.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, ollie Landing page"</p>
+                            <Img3/>
                             <div className="date-container">
                                 <h6 className="day">29</h6>
-                                <h6 className="mun">Jun</h6> 
+                                <h6 className="mun">Jun</h6>
                             </div>
                         </div>
                         <div className="txt-wrapper">
