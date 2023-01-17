@@ -1,13 +1,12 @@
-import { Avatar1, Avatar2, Avatar3 } from '../assets/imgs/avatar';
-import { Img1, Img2, Img3, Img4, Img5, Img6, Img7, Img8, Img9 }from '../assets/imgs/img';
+import React from 'react';
+import { Avatar1, Avatar2, Avatar3 } from './Avatar';
+import { Img1, Img2, Img3, Img4, Img5, Img6, Img7, Img8, Img9 } from './Img';
 
 export function Body(){
     return (
         <div>
             <section className="section" id="about">
-
                 <div className="container">
-
                     <div className="row align-items-center mr-auto">
                         <div className="col-md-4">
                             <h6 className="xs-font mb-0">nobis dolorem sapiente evenie.</h6>

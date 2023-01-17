@@ -14,7 +14,7 @@
     "gh-pages": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^2.1.3",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4"
   },
@@ -23,7 +23,7 @@
     "deploy": "gh-pages -b master -d build",
     "hml-deploy": "gh-pages -b hml -d build",
     "dev-deploy": "gh-pages -b dev -d build",
-    "start": "react-scripts start",
+    "start": "react-scripts --openssl-legacy-provider start",
     "build": "react-scripts build"
   },
   "eslintConfig": {

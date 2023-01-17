@@ -1,7 +1,7 @@
 import React from "react";
-import avatar1 from './avatar1.jpg';
-import avatar2 from './avatar2.jpg';
-import avatar3 from './avatar3.jpg';
+import avatar1 from '../assets/imgs/avatar1.jpg';
+import avatar2 from '../assets/imgs/avatar2.jpg';
+import avatar3 from '../assets/imgs/avatar3.jpg';
 
 export function Avatar1() {
     return <img src={avatar1} className="avatar" alt="Avatar1"/>;
