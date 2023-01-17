@@ -24,7 +24,7 @@
     "hml-deploy": "gh-pages -b hml -d build",
     "dev-deploy": "gh-pages -b dev -d build",
     "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts build"
+    "build": "react-scripts --openssl-legacy-provider build"
   },
   "eslintConfig": {
     "extends": [
