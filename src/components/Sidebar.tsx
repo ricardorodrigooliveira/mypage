@@ -23,7 +23,7 @@ const Sidebar = () => {
           md:translate-x-0 md:static md:flex md:flex-col
         `}
       >
-        <div className="text-2xl font-bold tracking-tight mb-10">🏁 Meu Projeto</div>
+        <div className="text-2xl font-bold tracking-tight mb-10">🏁 Meus Projetos</div>
         <nav className="flex flex-col gap-4 text-lg">
           <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-3 hover:text-blue-300 transition">
             <Home className="w-5 h-5" /> Home
