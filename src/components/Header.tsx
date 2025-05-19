@@ -1,12 +1,46 @@
-import { useState } from 'react';
-import ThemeSwitcher from './ThemeSwitcher';
+import { useState, useContext } from "react";
+import ThemeSwitcher from "./ThemeSwitcher";
+import { AuthContext } from "../contexts/AuthContext";
+import { useNavigate } from "react-router-dom";
+
+const apiUrl = import.meta.env.VITE_API_URL;
+console.log('API URL:', apiUrl);
 
 const Header = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [showLoginForm, setShowLoginForm] = useState(false);
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [erro, setErro] = useState("");
+
+  const { token, isAdmin, login, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogin = async () => {
+    try {
+      const response = await fetch(`${apiUrl}/auth/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password: senha }),
+      });
+
+      if (!response.ok) throw new Error("Login inválido");
+
+      const data = await response.json();
+      login(data.token);
+      setShowLoginForm(false);
+      setDropdownOpen(false);
+      navigate("/"); // volta pra Home mostrando formulário
+    } catch {
+      setErro("E-mail ou senha inválidos");
+    }
+  };
 
   const handleLogout = () => {
-    alert('Logout executado!');
-    // Aqui você pode implementar o logout real
+    logout();
+    setDropdownOpen(false);
+    setShowLoginForm(false);
+    navigate("/");
   };
 
   return (
@@ -24,17 +58,45 @@ const Header = () => {
               alt="Avatar do usuário"
               className="w-10 h-10 rounded-full"
             />
-            <span className="hidden md:block text-gray-700 dark:text-gray-200 font-semibold">Usuário</span>
+            <span className="hidden md:block text-gray-700 dark:text-gray-200 font-semibold">
+              Usuário
+            </span>
           </button>
 
           {dropdownOpen && (
-            <div className="absolute right-0 mt-2 w-32 bg-white dark:bg-gray-800 rounded-md shadow-lg py-1 z-50">
-              <button
-                onClick={handleLogout}
-                className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700"
-              >
-                Logout
-              </button>
+            <div className="absolute right-0 mt-2 w-64 bg-white dark:bg-gray-800 rounded-md shadow-lg py-2 px-4 z-50">
+              {!token ? (
+                <>
+                  <input
+                    type="email"
+                    placeholder="E-mail"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full mb-2 p-2 border rounded bg-white dark:bg-gray-700 dark:text-white"
+                  />
+                  <input
+                    type="password"
+                    placeholder="Senha"
+                    value={senha}
+                    onChange={(e) => setSenha(e.target.value)}
+                    className="w-full mb-2 p-2 border rounded bg-white dark:bg-gray-700 dark:text-white"
+                  />
+                  {erro && <p className="text-red-500 text-sm mb-2">{erro}</p>}
+                  <button
+                    onClick={handleLogin}
+                    className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+                  >
+                    Entrar
+                  </button>
+                </>
+              ) : (
+                <button
+                  onClick={handleLogout}
+                  className="block w-full text-left text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 py-2 px-4"
+                >
+                  Logout
+                </button>
+              )}
             </div>
           )}
         </div>
