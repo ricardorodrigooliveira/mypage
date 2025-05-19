@@ -1,15 +1,25 @@
 import Card from "../components/Card";
 import { FaBullseye, FaSwimmer } from "react-icons/fa";
-import { useState } from "react";
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
 import type { Post } from "../components/PostForm";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../contexts/AuthContext";
+
+const apiUrl = import.meta.env.VITE_API_URL
 
 export default function Home() {
+  const { isAdmin } = useContext(AuthContext);
   const [posts, setPosts] = useState<Post[]>([]);
 
-  const handleNewPost = (newPost: Post) => {
-    setPosts([newPost, ...posts]);
+  useEffect(() => {
+    fetch(`${apiUrl}/posts`)
+      .then((res) => res.json())
+      .then((data) => setPosts(data));
+  }, []);
+
+  const handleAddPost = (post: any) => {
+    setPosts((prev) => [post, ...prev]);
   };
 
   return (
@@ -45,7 +55,7 @@ export default function Home() {
 
         {/* Formulário para nova publicação fica abaixo */}
         <h1 className="text-2xl font-bold mt-8 mb-4">Faça uma nova publicação</h1>
-        <PostForm onAddPost={handleNewPost} />
+        {isAdmin && <PostForm onAddPost={handleAddPost} />}
       </div>
     </div>
   );
