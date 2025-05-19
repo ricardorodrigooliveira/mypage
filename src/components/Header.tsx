@@ -13,7 +13,7 @@ const Header = () => {
   const [senha, setSenha] = useState("");
   const [erro, setErro] = useState("");
 
-  const { token, isAdmin, login, logout } = useContext(AuthContext);
+  const { token, login, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogin = async () => {
