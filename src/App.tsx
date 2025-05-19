@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Header from './components/Header';
 import Home from './pages/Home';
+import Login from "./pages/Login";
 import TiroEsportivo from './pages/TiroEsportivo';
 import Triathlon from './pages/Triathlon';
 import Feed from "./pages/Feed";
@@ -15,7 +16,8 @@ function App() {
         <Header />
         <main className="flex-1 overflow-y-auto bg-gray-100 dark:bg-gray-800 p-8">
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Home/>} />
+            <Route path="/login" element={<Login />} />
             <Route path="/feed" element={<Feed />} />
             <Route path="/tiro-esportivo" element={<TiroEsportivo />} />
             <Route path="/triathlon" element={<Triathlon />} />

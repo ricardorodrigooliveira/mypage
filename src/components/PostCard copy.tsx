@@ -19,11 +19,7 @@ export default function PostCard({ post }: PostCardProps) {
   return (
     <div className="bg-white dark:bg-gray-800 shadow rounded p-4 mb-4 flex flex-col">
       {post.text && <p className="mb-2 text-gray-900 dark:text-white">{post.text}</p>}
-	  <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-        {post.titulo}
-      </h2>
 
-      <p className="mb-2 text-gray-900 dark:text-white">{post.conteudo}</p>
       {post.image && (
         <img
           src={post.image}
