@@ -24,9 +24,9 @@ export default function PostCard({ post }: PostCardProps) {
       </h2>
 
       <p className="mb-2 text-gray-900 dark:text-white">{post.conteudo}</p>
-      {post.image && (
+      {post.arquivo && (
         <img
-          src={post.image}
+          src={`${import.meta.env.VITE_API_URL}/uploads/${post.arquivo}`}
           alt="Post"
           className="w-full max-h-96 object-contain rounded mb-2"
           style={{ maxHeight: "24rem" }}
