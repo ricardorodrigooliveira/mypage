@@ -7,7 +7,7 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "homepage": "https://seu-usuario.github.io/nome-do-repositorio",
+    "homepage": "https://ricardorodrigooliveira.github.io/mypage",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
