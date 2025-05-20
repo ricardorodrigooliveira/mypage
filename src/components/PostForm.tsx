@@ -6,7 +6,7 @@ export type Post = {
   titulo: string;
   conteudo: string;
   text: string;
-  image?: string;
+  arquivo?: string;
   file?: string;
   createdAt: string;
 };
@@ -62,7 +62,7 @@ export default function PostForm({ onAddPost }: PostFormProps) {
             titulo: postCriado.titulo,
             conteudo: postCriado.conteudo,
             text: postCriado.text,
-            image: image ? URL.createObjectURL(image) : undefined,
+            arquivo: image ? URL.createObjectURL(image) : undefined,
             file: file ? file.name : undefined,
             createdAt: postCriado.createdAt,
         };
