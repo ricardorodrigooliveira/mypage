@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
-import type { Post } from "../components/PostForm";
+import type { Post } from "../types";
 import axios from "axios";
 
 export default function Feed() {
@@ -10,7 +10,7 @@ export default function Feed() {
   const fetchPosts = async () => {
     try {
       const token = localStorage.getItem("token");
-      const response = await axios.get("https://seu-backend-url/posts", {
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/auth/posts`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

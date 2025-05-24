@@ -1,43 +1,119 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Home, Target, Activity, Menu, X } from 'lucide-react';
+import {
+  Box,
+  Drawer,
+  Toolbar,
+  Typography,
+  IconButton,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  Avatar,
+  Menu,
+  MenuItem,
+} from "@mui/material";
+import {
+  Home as HomeIcon,
+  Add as AddIcon,
+  Logout as LogoutIcon,
+  Menu as MenuIcon,
+} from "@mui/icons-material";
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
 
-const Sidebar = () => {
-  const [open, setOpen] = useState(false);
+const drawerWidth = 240;
+
+export default function Sidebar() {
+  const { isAuthenticated, user, logout } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+
+  const handleAvatarClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+    handleCloseMenu();
+  };
+
+  const navItems = [
+    { label: "Home", icon: <HomeIcon />, path: "/home" },
+    ...(isAuthenticated
+      ? [{ label: "Nova Postagem", icon: <AddIcon />, path: "/nova-postagem" }]
+      : []),
+  ];
 
   return (
-    <>
-      {/* Botão hamburguer só no mobile */}
-      <button
-        className="md:hidden fixed top-4 left-4 z-50 p-2 rounded-md bg-blue-800 text-white"
-        onClick={() => setOpen(!open)}
-        aria-label="Toggle menu"
-      >
-        {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-      </button>
-
-      <aside
-        className={`
-          fixed top-0 left-0 h-full w-64 bg-blue-800 text-white p-6 space-y-6 shadow-lg
-          transform ${open ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out
-          md:translate-x-0 md:static md:flex md:flex-col
-        `}
-      >
-        <div className="text-2xl font-bold tracking-tight mb-10">🏁 Meus Projetos</div>
-        <nav className="flex flex-col gap-4 text-lg">
-          <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-3 hover:text-blue-300 transition">
-            <Home className="w-5 h-5" /> Home
-          </Link>
-          <Link to="/tiro-esportivo" onClick={() => setOpen(false)} className="flex items-center gap-3 hover:text-blue-300 transition">
-            <Target className="w-5 h-5" /> Tiro Esportivo
-          </Link>
-          <Link to="/triathlon" onClick={() => setOpen(false)} className="flex items-center gap-3 hover:text-blue-300 transition">
-            <Activity className="w-5 h-5" /> Triathlon
-          </Link>
-        </nav>
-      </aside>
-    </>
+    <Drawer
+      variant="permanent"
+      sx={{
+        width: drawerWidth,
+        flexShrink: 0,
+        [`& .MuiDrawer-paper`]: {
+          width: drawerWidth,
+          boxSizing: "border-box",
+        },
+      }}
+    >
+      <Toolbar>
+        <Typography
+          variant="h6"
+          noWrap
+          component="div"
+          sx={{ cursor: "pointer" }}
+          onClick={() => navigate("/home")}
+        >
+          Home
+        </Typography>
+      </Toolbar>
+      <Divider />
+      <List>
+        {navItems.map((item) => (
+          <ListItem key={item.label} disablePadding>
+            <ListItemButton
+              selected={location.pathname === item.path}
+              onClick={() => navigate(item.path)}
+            >
+              <ListItemIcon>{item.icon}</ListItemIcon>
+              <ListItemText primary={item.label} />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+      <Box sx={{ flexGrow: 1 }} />
+      {isAuthenticated && (
+        <Box sx={{ p: 2, display: "flex", justifyContent: "center" }}>
+          <IconButton onClick={handleAvatarClick}>
+            <Avatar>{user?.name.charAt(0)}</Avatar>
+          </IconButton>
+          <Menu
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleCloseMenu}
+            anchorOrigin={{ vertical: "top", horizontal: "right" }}
+            transformOrigin={{ vertical: "top", horizontal: "right" }}
+          >
+            <MenuItem disabled>{user?.name}</MenuItem>
+            <Divider />
+            <MenuItem onClick={handleLogout}>
+              <LogoutIcon fontSize="small" sx={{ mr: 1 }} />
+              Sair
+            </MenuItem>
+          </Menu>
+        </Box>
+      )}
+    </Drawer>
   );
-};
-
-export default Sidebar;
+}

@@ -1,18 +1,9 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
-
-export type Post = {
-  id: number;
-  titulo: string;
-  conteudo: string;
-  text: string;
-  arquivo?: string;
-  file?: string;
-  createdAt: string;
-};
+import type { Post } from '../types';
 
 type PostFormProps = {
-  onAddPost: (post: Post) => void;
+  onAddPost?: (post: Post) => void;
 };
 
 export default function PostForm({ onAddPost }: PostFormProps) {
@@ -64,10 +55,12 @@ export default function PostForm({ onAddPost }: PostFormProps) {
             text: postCriado.text,
             arquivo: image ? URL.createObjectURL(image) : undefined,
             file: file ? file.name : undefined,
-            createdAt: postCriado.createdAt,
+            data_criacao: postCriado.data_criacao,
         };
 
-        onAddPost(newPost);
+        if (onAddPost) {
+          onAddPost(newPost);
+        }
 
         setTitulo("");
         setConteudo("");

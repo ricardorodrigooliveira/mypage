@@ -1,15 +1,16 @@
+// Home.tsx - Versão 2
+import { useAuth } from "../hooks/useAuth";
+import { useEffect, useState } from "react";
 import Card from "../components/Card";
-import { FaBullseye, FaSwimmer } from "react-icons/fa";
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
-import type { Post } from "../components/PostForm";
-import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import type { Post } from "../types";
+import { FaBullseye, FaSwimmer } from "react-icons/fa";
 
-const apiUrl = import.meta.env.VITE_API_URL
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function Home() {
-  const { isAdmin } = useContext(AuthContext);
+  const { isAuthenticated } = useAuth();
   const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function Home() {
 
   return (
     <div className="max-w-5xl mx-auto space-y-6">
+
       <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-200">Bem-vindo!</h1>
       <p className="text-gray-600 dark:text-gray-400">
         Esta é a sua área principal. Use o menu lateral para navegar entre os módulos.
@@ -45,7 +47,6 @@ export default function Home() {
       </div>
 
       <div className="p-4 max-w-3xl mx-auto">
-        {/* Feed de publicações aparece primeiro */}
         <h2 className="text-xl font-semibold mb-4">Feed de Publicações</h2>
         {posts.length === 0 ? (
           <p className="text-gray-500">Nenhuma publicação ainda.</p>
@@ -53,9 +54,12 @@ export default function Home() {
           posts.map((post, index) => <PostCard key={index} post={post} />)
         )}
 
-        {/* Formulário para nova publicação fica abaixo */}
-        <h1 className="text-2xl font-bold mt-8 mb-4">Faça uma nova publicação</h1>
-        {isAdmin && <PostForm onAddPost={handleAddPost} />}
+        {isAuthenticated && (
+          <>
+            <h1 className="text-2xl font-bold mt-8 mb-4">Faça uma nova publicação</h1>
+            <PostForm onAddPost={handleAddPost} />
+          </>
+        )}
       </div>
     </div>
   );
