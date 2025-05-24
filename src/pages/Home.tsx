@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import PostForm from "../components/PostForm";
 import PostCard from "../components/PostCard";
-import type { Post } from "../components/PostForm";
+import type { Post } from "../types";
 import { FaBullseye, FaSwimmer } from "react-icons/fa";
 
 const apiUrl = import.meta.env.VITE_API_URL;

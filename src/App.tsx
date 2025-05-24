@@ -5,7 +5,6 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import TiroEsportivo from './pages/TiroEsportivo';
 import Triathlon from './pages/Triathlon';
-import Feed from './pages/Feed';
 import NotFound from './pages/NotFound';
 import NovaPostagem from './NovaPostagem';
 
