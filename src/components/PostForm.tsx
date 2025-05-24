@@ -12,7 +12,7 @@ export type Post = {
 };
 
 type PostFormProps = {
-  onAddPost: (post: Post) => void;
+  onAddPost?: (post: Post) => void;
 };
 
 export default function PostForm({ onAddPost }: PostFormProps) {
@@ -67,7 +67,9 @@ export default function PostForm({ onAddPost }: PostFormProps) {
             createdAt: postCriado.createdAt,
         };
 
-        onAddPost(newPost);
+        if (onAddPost) {
+          onAddPost(newPost);
+        }
 
         setTitulo("");
         setConteudo("");
