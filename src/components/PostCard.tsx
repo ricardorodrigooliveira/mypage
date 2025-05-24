@@ -1,13 +1,12 @@
-import type { Post } from "./PostForm";
+import type { Post } from "../types";
 
 type PostCardProps = {
   post: Post;
 };
 
 export default function PostCard({ post }: PostCardProps) {
-  // Formata a data para exibir de forma legível
-  const formattedDate = post.createdAt
-    ? new Date(post.createdAt).toLocaleString("pt-BR", {
+  const formattedDate = post.data_criacao
+    ? new Date(post.data_criacao).toLocaleString("pt-BR", {
         day: "2-digit",
         month: "2-digit",
         year: "numeric",
@@ -17,13 +16,19 @@ export default function PostCard({ post }: PostCardProps) {
     : "";
 
   return (
-    <div className="bg-white dark:bg-gray-800 shadow rounded p-4 mb-4 flex flex-col">
+    <div className="bg-white dark:bg-gray-800 shadow rounded p-4 mb-4 flex flex-col relative">
       {post.text && <p className="mb-2 text-gray-900 dark:text-white">{post.text}</p>}
-	  <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
-        {post.titulo}
-      </h2>
 
-      <p className="mb-2 text-gray-900 dark:text-white">{post.conteudo}</p>
+      {post.titulo && (
+        <h2 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">
+          {post.titulo}
+        </h2>
+      )}
+
+      {post.conteudo && (
+        <p className="mb-2 text-gray-900 dark:text-white">{post.conteudo}</p>
+      )}
+
       {post.arquivo && (
         <img
           src={`${import.meta.env.VITE_API_URL}/uploads/${post.arquivo}`}
@@ -38,10 +43,9 @@ export default function PostCard({ post }: PostCardProps) {
           📎 Arquivo: <strong>{post.file}</strong>
         </div>
       )}
-
-      {/* Rodapé com a data/hora alinhado à direita */}
+      {/* Rodapé com a data/hora no canto inferior esquerdo */}
       {formattedDate && (
-        <footer className="mt-auto text-xs text-gray-500 dark:text-gray-400 text-right">
+        <footer className="absolute bottom-0 right-4 text-xs text-gray-400 dark:text-gray-500">
           Publicado em {formattedDate}
         </footer>
       )}
