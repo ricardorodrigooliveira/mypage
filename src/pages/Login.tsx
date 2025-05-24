@@ -1,24 +1,26 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 
-const apiUrl = "https://mypage-backend.up.railway.app";
+const apiUrl = import.meta.env.VITE_API_URL;
 
 export default function Login() {
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [password, setSenha] = useState("");
   const [erro, setErro] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleLogin = async () => {
     setErro("");
 
     try {
-      const response = await fetch(`${apiUrl}/login`, {
+      const response = await fetch(`${apiUrl}/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, senha }),
+        body: JSON.stringify({ email, password }),
       });
 
       if (!response.ok) {
@@ -26,8 +28,12 @@ export default function Login() {
       }
 
       const data = await response.json();
-      localStorage.setItem("token", data.token);
-      navigate("/feed"); // redireciona para o feed
+
+      // Salva o token e dados do usuário no contexto de autenticação
+      login(data.user, data.token);
+
+      // Redireciona para o feed
+      navigate("/feed");
     } catch (err: any) {
       console.error("Erro ao fazer login:", err);
       setErro("E-mail ou senha inválidos.");
@@ -56,7 +62,7 @@ export default function Login() {
 
       <input
         type="password"
-        value={senha}
+        value={password}
         onChange={(e) => setSenha(e.target.value)}
         placeholder="Sua senha"
         className="w-full mb-4 p-2 border rounded dark:bg-gray-700 dark:text-white"
