@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { ChangeEvent, FormEvent } from "react";
-import type { Post } from '../types';
+import type { Post } from "../types";
 
 type PostFormProps = {
   onAddPost?: (post: Post) => void;
@@ -10,76 +10,75 @@ export default function PostForm({ onAddPost }: PostFormProps) {
   const [titulo, setTitulo] = useState("");
   const [conteudo, setConteudo] = useState("");
   const [text, setText] = useState("");
+  const [categoria, setCategoria] = useState("feed");
   const [image, setImage] = useState<File | null>(null);
   const [file, setFile] = useState<File | null>(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
 
-  const apiUrl = import.meta.env.VITE_API_URL;
-  
-  const formData = new FormData();
+    const apiUrl = import.meta.env.VITE_API_URL;
+    const formData = new FormData();
+
     formData.append("titulo", titulo);
     formData.append("conteudo", conteudo);
+    formData.append("text", text);
+    formData.append("categoria", categoria);
     if (file) formData.append("arquivo", file);
     if (image) formData.append("image", image);
 
     try {
-        const token = localStorage.getItem("token"); // Recupera o token salvo no login
+      const token = localStorage.getItem("token");
+      if (!token) {
+        alert("Você precisa estar logado para postar.");
+        return;
+      }
 
-        if (!token) {
-            alert("Você precisa estar logado para postar.");
-            return;
-        }
+      const endpoint = file ? `${apiUrl}/posts/upload` : `${apiUrl}/posts`;
 
-        //const response = await fetch(`${apiUrl}/posts`, {
-        const endpoint = file ? `${apiUrl}/posts/upload` : `${apiUrl}/posts`;
-        const response = await fetch(endpoint, {
-            method: "POST",
-            headers: {
-            Authorization: `Bearer ${token}`, // ← cabeçalho com token
-            },
-            body: formData,
-        });
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
 
-        if (!response.ok) {
-            throw new Error("Erro ao criar postagem");
-        }
+      if (!response.ok) throw new Error("Erro ao criar postagem");
 
-        const postCriado = await response.json();
+      const postCriado = await response.json();
 
-        const newPost: Post = {
-            id: postCriado.id,
-            titulo: postCriado.titulo,
-            conteudo: postCriado.conteudo,
-            text: postCriado.text,
-            arquivo: image ? URL.createObjectURL(image) : undefined,
-            file: file ? file.name : undefined,
-            data_criacao: postCriado.data_criacao,
-        };
+      const newPost: Post = {
+        id: postCriado.id,
+        titulo: postCriado.titulo,
+        conteudo: postCriado.conteudo,
+        text: postCriado.text,
+        categoria: postCriado.categoria,
+        arquivo: image ? URL.createObjectURL(image) : undefined,
+        file: file ? file.name : undefined,
+        data_criacao: postCriado.data_criacao,
+      };
 
-        if (onAddPost) {
-          onAddPost(newPost);
-        }
+      if (onAddPost) onAddPost(newPost);
 
-        setTitulo("");
-        setConteudo("");
-        setText("");
-        setImage(null);
-        setFile(null);
+      // Resetar campos
+      setTitulo("");
+      setConteudo("");
+      setText("");
+      setCategoria("feed");
+      setImage(null);
+      setFile(null);
     } catch (err) {
-        console.error("Erro ao enviar post:", err);
+      console.error("Erro ao enviar post:", err);
     }
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setImage(file);
+    setImage(e.target.files?.[0] || null);
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] || null;
-    setFile(file);
+    setFile(e.target.files?.[0] || null);
   };
 
   return (
@@ -110,7 +109,17 @@ export default function PostForm({ onAddPost }: PostFormProps) {
         rows={2}
       />
 
-      <div className="flex gap-4 mb-2">
+      <select
+        value={categoria}
+        onChange={(e) => setCategoria(e.target.value)}
+        className="w-full p-2 border rounded dark:bg-gray-700 dark:text-white"
+      >
+        <option value="feed">Feed</option>
+        <option value="tiro">Tiro Esportivo</option>
+        <option value="triathlon">Triathlon</option>
+      </select>
+
+      <div className="flex gap-4">
         <label className="cursor-pointer">
           📷 <input type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
         </label>
